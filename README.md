@@ -15,7 +15,7 @@ Prompts user for weekly total hours and preferred workout types to construct a w
 - Reads user input and calculates workout times based on choices made
 - Outputs completed plan
 
-![System diagram](FlowChart.png)
+![System diagram](SystemDiagram.png)
 
 ## Tech Stack
 
