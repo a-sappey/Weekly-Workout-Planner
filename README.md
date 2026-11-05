@@ -61,6 +61,10 @@ Follow prompts in terminal to create desired workout plan.
 
 ## Roadmap
 
+- [ ] Basic calculation logic
+- [ ] Basic plan creation and output logic
+- [ ] Workout type selection support
+- [ ] Storage and retrieval function
 - [ ] Stat tracking & summaries
 - [ ] Race Season support
 - [ ] More schedule types ( <7 days/week)
