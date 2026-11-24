@@ -2,6 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //Input
         int hoursInput = 0;
         boolean valid = false;
 
@@ -18,6 +19,7 @@ public class Main {
             }
         }
 
+        //Assign time to days
         int totalMinutes = hoursInput * 60;
         int weekMinutes = totalMinutes;
         int[] days = new int[7];
@@ -30,7 +32,7 @@ public class Main {
         days[5] = (int) (totalMinutes * 0.2);
         days[6] = (int) (totalMinutes * 0.1);
 
-
+        //Select Workouts
         valid = false;
 
         int workoutOne = 1;
@@ -60,6 +62,8 @@ public class Main {
             }
         }
 
+
+        //Meet minimum time
         int weekSum = 0;
 
         for (int i = 0; i < days.length; i++) {
@@ -84,8 +88,12 @@ public class Main {
             }
         }
 
+        //Day 1
+        IO.println();
         IO.println("Day 1:\n" + days[0] + " minutes Z2");
 
+
+        // Workout One
         if (workoutOne == 1) {
 
             int block = (int) (days[1] * 0.5);
@@ -106,6 +114,7 @@ public class Main {
 
             }
 
+            IO.println();
             IO.println("Day 2:\n" + warmup + " minutes Z2 Warmup\n" +
                     block + " minutes tempo effort Z3/Z4\n" + cooldown + " minutes Z2 Cooldown");
         }
@@ -126,6 +135,7 @@ public class Main {
                 }
             }
 
+            IO.println();
             IO.println("Day 2:\n" + warmup + " minutes Z2 warmup\n" +
                     intervalCount + " x minute on / minute off intervals\n" + cooldown + " minutes Z2 cooldown");
         }
@@ -152,6 +162,7 @@ public class Main {
                 }
             }
 
+            IO.println();
             IO.println("Day 2:\n" + warmup + " minutes Z2 warmup\n" +
                     intervalCount + " x 5 minutes on / 2 minutes off\n" + cooldown + " minutes Z2 cooldown");
         }
@@ -179,10 +190,133 @@ public class Main {
                 }
             }
 
+            IO.println();
             IO.println("Day 2:\n" + warmup + " minutes Z2 warmup\n" +
                     intervalCount + " sets 10 x 15 second SS / 105 second rest, 2 minute rest between sets\n" +
                     cooldown + " minutes Z2 cooldown");
         }
+
+
+        //Day 3, LR
+        IO.println();
+        IO.println("Day 3:\n" + days[2] + " minutes Z2");
+
+
+        //Workout Two
+        if (workoutTwo == 1) {
+
+            int block = (int) (days[3] * 0.5);
+            int warmup = (int) (days[3] * 0.25);
+            int cooldown = (int) (days[3] * 0.25);
+
+            if (block % 5 != 0) {
+                block += 1;
+            }
+
+            while ((block + warmup + cooldown) > days[3]) {
+                if ((block + warmup + cooldown) - days[3] > 2) {
+                    warmup -= 1;
+                    cooldown -= 1;
+                } else {
+                    warmup -= 2;
+                }
+
+            }
+
+            IO.println();
+            IO.println("Day 4:\n" + warmup + " minutes Z2 Warmup\n" +
+                    block + " minutes tempo effort Z3/Z4\n" + cooldown + " minutes Z2 Cooldown");
+        }
+
+        if (workoutTwo == 2) {
+
+            int intervalCount = (int) (days[3] * 0.2);
+            int blockMinutes = (int) (days[3] * 0.4);
+            int warmup = (int) (days[3] * 0.3);
+            int cooldown = (int) (days[3] * 0.3);
+
+            while ((blockMinutes + warmup + cooldown) > days[3]) {
+                if ((blockMinutes + warmup + cooldown) - days[3] > 2) {
+                    warmup -= 1;
+                    cooldown -= 1;
+                } else {
+                    warmup -= 2;
+                }
+            }
+
+            IO.println();
+            IO.println("Day 4:\n" + warmup + " minutes Z2 warmup\n" +
+                    intervalCount + " x minute on / minute off intervals\n" + cooldown + " minutes Z2 cooldown");
+        }
+
+        if (workoutTwo == 3) {
+
+            int blockMinutes = (int) (days[3] * 0.5);
+            int warmup = (int) (days[3] * 0.25);
+            int cooldown = (int) (days[3] * 0.25);
+
+            if (blockMinutes % 7 != 0) {
+                blockMinutes += 1;
+                warmup -= 1;
+            }
+
+            int intervalCount = blockMinutes / 7;
+
+            while ((blockMinutes + warmup + cooldown) > days[3]) {
+                if ((blockMinutes + warmup + cooldown) - days[3] > 2) {
+                    warmup -= 1;
+                    cooldown -= 1;
+                } else {
+                    warmup -= 2;
+                }
+            }
+
+            IO.println();
+            IO.println("Day 4:\n" + warmup + " minutes Z2 warmup\n" +
+                    intervalCount + " x 5 minutes on / 2 minutes off\n" + cooldown + " minutes Z2 cooldown");
+        }
+
+        if (workoutTwo == 4) {
+
+            int blockMinutes = (int) (days[3] * 0.4);
+            int warmCoolPool = (int) (days[3] * 0.6);
+
+            if ((blockMinutes + 2) % 12 != 0) {
+                blockMinutes += 1;
+                warmCoolPool -= 1;
+            }
+
+            int intervalCount = blockMinutes / 12;
+            int warmup = warmCoolPool / 2;
+            int cooldown = warmCoolPool / 2;
+
+            while ((blockMinutes + warmup + cooldown) > days[3]) {
+                if ((blockMinutes + warmup + cooldown) - days[3] > 2) {
+                    warmup -= 1;
+                    cooldown -= 1;
+                } else {
+                    warmup -= 2;
+                }
+            }
+
+            IO.println();
+            IO.println("Day 4:\n" + warmup + " minutes Z2 warmup\n" +
+                    intervalCount + " sets 10 x 15 second SS / 105 second rest, 2 minute rest between sets\n" +
+                    cooldown + " minutes Z2 cooldown");
+        }
+
+        //Day 5
+        IO.println();
+        IO.println("Day 5:\n" + days[4] + " minutes Z2");
+
+        //Day 6
+        IO.println();
+        IO.println("Day 6:\n" + days[5] + " minutes Z2");
+
+
+        //Day 7
+        IO.println();
+        IO.println("Day 7:\n" + days[6] + " minutes Z2");
 
         IO.println("Week total minutes: " + weekSum);
 
