@@ -57,30 +57,35 @@ public class Main {
 
         if (race) {
 
-            if (raceSelection == 0) {
+            if (raceDay == 0) {
                 days[5] = raceLength;
+                totalMinutes -= raceLength;
             } else {
                 days[5] = (int) (totalMinutes * 0.2);
             }
 
-            if (raceSelection == 1) {
+            if (raceDay == 1) {
                 days[6] = raceLength;
+                totalMinutes -= raceLength;
             } else {
                 days[6] = (int) (totalMinutes * 0.1);
             }
+        } else {
+            days[5] = (int) (totalMinutes * 0.2);
+            days[6] = (int) (totalMinutes * 0.1);
         }
 
         days[0] = (int) (totalMinutes * 0.11);
         days[1] = (int) (totalMinutes * 0.13);
-        days[2] = (int) (totalMinutes * 0.2);
+        days[2] = (int) (totalMinutes * 0.22);
         days[3] = (int) (totalMinutes * 0.13);
         days[4] = (int) (totalMinutes * 0.11);
 
         //Select Workouts
         valid = false;
 
-        int workoutOne = 1;
-        int workoutTwo = 4;
+        int workoutOne = -1;
+        int workoutTwo = -1;
 
         while (!valid) {
             try {
@@ -114,19 +119,28 @@ public class Main {
             weekSum += days[i];
         }
 
-        if (weekSum < totalMinutes + raceLength) {
-            while (weekSum < totalMinutes + raceLength) {
+        if (weekSum < weekMinutes) {
+            while (weekSum < weekMinutes) {
 
-                if (totalMinutes - weekSum <= 5) {
-                    days[2] += totalMinutes - weekSum;
-                    weekSum += totalMinutes - weekSum;
+                if (weekMinutes - weekSum <= 5) {
+                    days[2] += weekMinutes - weekSum;
+                    weekSum += weekMinutes - weekSum;
                     break;
                 }
 
                 for (int i = 0; i < days.length; i++) {
                     if (i == 0 || i == 2 || i == 4 || i == 6) {
+
+                        if (race && raceDay == 1 && i == 6) {
+                            continue;
+                        }
+
                         days[i] += 1;
                         weekSum += 1;
+
+                        if (weekSum >= weekMinutes) {
+                            break;
+                        }
                     }
                 }
             }
@@ -355,7 +369,7 @@ public class Main {
 
         //Day 6
 
-        if (race && raceSelection == 0) {
+        if (race && raceDay == 0) {
             IO.println();
             IO.println("Day 6:\n" + "15 minute warmup\n" + "Race (" + (raceLength - 30) +
                     " minutes)\n" + "15 minute cooldown\n");
@@ -367,7 +381,7 @@ public class Main {
 
         //Day 7
 
-        if (race && raceSelection == 1) {
+        if (race && raceDay == 1) {
             IO.println();
             IO.println("Day 7:\n" + "15 minute warmup\n" + "Race (" + (raceLength - 30) +
                     " minutes)\n" + "15 minute cooldown\n");
